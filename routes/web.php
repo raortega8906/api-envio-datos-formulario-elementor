@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/forms', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return redirect()->route('forms.index');
 });
 
 Route::get('/forms', [App\Http\Controllers\FormController::class, 'index'])->name('forms.index');
