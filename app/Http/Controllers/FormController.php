@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Form;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class FormController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
-        $forms = Form::all();
-
-        return view('forms.index', compact('forms'));
+        // Devolver datos en formato JSON
+        return response()->json([
+            'forms' => Form::all()
+        ], 200);        
     }
 
     public function recibirFormulario(Request $request)
