@@ -19,6 +19,7 @@ class FormController extends Controller
     {
         // Validar datos
         $validator = Validator::make($request->all(), [
+            'form_name' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|max:255',
@@ -37,6 +38,7 @@ class FormController extends Controller
         // Guardar en la base de datos
         try {
             $formulario = Form::create([
+                'form_name' => $request->form_name,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
