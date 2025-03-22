@@ -11,6 +11,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>Form Name</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
@@ -20,6 +21,7 @@
                             <tbody>
                                 @foreach ($forms as $form)
                                     <tr>
+                                        <td>{{ $form->form_name }}</td>
                                         <td>{{ $form->first_name }}</td>
                                         <td>{{ $form->last_name }}</td>
                                         <td>{{ $form->email }}</td>
