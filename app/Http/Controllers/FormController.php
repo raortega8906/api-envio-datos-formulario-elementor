@@ -17,7 +17,7 @@ class FormController extends Controller
         ], 200);        
     }
 
-    public function recibirFormulario(Request $request)
+    public function receiveForm(Request $request)
     {
         // Validar datos
         $validator = Validator::make($request->all(), [
