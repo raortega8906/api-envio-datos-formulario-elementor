@@ -28,8 +28,6 @@ class FormController extends Controller
             'phone' => 'nullable|string|max:20',
         ]);
 
-        // dd($validator);
-
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Error en la validación',
