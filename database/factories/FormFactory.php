@@ -18,10 +18,7 @@ class FormFactory extends Factory
     {
         return [
             'form_name' => $this->faker->name,
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
-            'email' => $this->faker->unique()->safeEmail,
-            'phone' => $this->faker->phoneNumber,
+            'data' => $this->faker->json,
         ];
     }
 }

@@ -19,13 +19,9 @@ class FormController extends Controller
 
     public function receiveForm(Request $request)
     {
-        // Validar datos
         $validator = Validator::make($request->all(), [
             'form_name' => 'required|string|max:255',
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:20',
+            'data' => 'required|array', // Validamos que sea un array
         ]);
 
         if ($validator->fails()) {
@@ -35,14 +31,10 @@ class FormController extends Controller
             ], 422);
         }
 
-        // Guardar en la base de datos
         try {
             $formulario = Form::create([
                 'form_name' => $request->form_name,
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'email' => $request->email,
-                'phone' => $request->phone,
+                'data' => $request->data, // Guardamos los datos dinámicamente
             ]);
 
             return response()->json([
@@ -56,4 +48,5 @@ class FormController extends Controller
             ], 500);
         }
     }
+
 }

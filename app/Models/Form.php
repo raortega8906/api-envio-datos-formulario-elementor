@@ -12,9 +12,10 @@ class Form extends Model
 
     protected $fillable = [
         'form_name',
-        'first_name',
-        'last_name',
-        'email',
-        'phone',
+        'data',
+    ];
+
+    protected $casts = [
+        'data' => 'array',
     ];
 }
