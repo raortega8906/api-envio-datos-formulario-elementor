@@ -14,18 +14,17 @@ Esta API permite probar formularios enviados desde Elementor, proporcionando end
 
 ## Endpoints
 
-- Enviar formulario
-
-`POST /api/recibir-formulario`
-
-Recibe los datos del formulario en formato JSON y los almacena en la base de datos.
-
 - Listar formularios
 
 `GET /api/forms`
 
 Retorna una lista de todos los formularios almacenados.
 
+- Enviar formulario
+
+`POST /api/receive-form`
+
+Recibe los datos del formulario en formato JSON y los almacena en la base de datos.
 
 ## Instalación
 
