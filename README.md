@@ -43,7 +43,7 @@ Elimina los datos del formulario dado el id
 
 - jQuery:
 
-`
+```
 jQuery(document).ready(function ($) {
     console.log('DOM cargado');
 
@@ -100,7 +100,7 @@ jQuery(document).ready(function ($) {
         console.error('No se detectó el botón');
     }
 });
-`
+```
 
 - php:
 
