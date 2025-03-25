@@ -121,12 +121,7 @@ function process_forms()
     }
 
     // CURL:
-
-    // URL del API para Desarrollo y Producción
-    // $url = 'https://prod-20.northeurope.logic.azure.com/workflows/0b7c274bcd8e4a57af0ed2992edaeed1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=eaeyD_wB04VkLcAcNxiZ0-yhr8qm4__B78g64u67nWg';
-
-    // URL del API para pruebas
-    $url = 'https://plugins.wpcache.es/api/receive-form';
+    $url = 'http://localhost:8000/api/receive-form';
 
     $data = array(
         'form_name' => $datos['form_name'],
