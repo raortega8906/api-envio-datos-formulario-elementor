@@ -104,7 +104,8 @@ jQuery(document).ready(function ($) {
 
 - php:
 
-`function process_forms()
+```
+function process_forms()
 {
     // Verificamos si los datos llegaron correctamente
     if (!isset($_POST['data'])) {
@@ -158,7 +159,8 @@ jQuery(document).ready(function ($) {
     }
 }
 add_action('wp_ajax_process_forms', 'process_forms');
-add_action('wp_ajax_nopriv_process_forms', 'process_forms');`
+add_action('wp_ajax_nopriv_process_forms', 'process_forms');
+```
 
 ## Instalación
 
