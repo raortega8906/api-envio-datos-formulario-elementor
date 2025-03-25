@@ -49,4 +49,31 @@ class FormController extends Controller
         }
     }
 
+    public function destroyForm($id)
+    {
+        $form = Form::find($id);
+        if($form){
+            $form->delete();
+            return response()->json([
+                'message' => 'Formulario eliminado con éxito'
+            ], 200);
+        }
+        else{
+            return response()->json([
+                'message' => 'Formulario no encontrado'
+            ], 404);
+        }
+    }
+
+    public function destroyAllForms()
+    {
+        $forms = Form::all();
+        foreach($forms as $form){
+            $form->delete();
+        }
+        return response()->json([
+            'message' => 'Todos los formularios han sido eliminados'
+        ], 200);
+    }
+
 }
