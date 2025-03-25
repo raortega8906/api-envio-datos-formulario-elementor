@@ -39,7 +39,7 @@ Elimina todos los datos de los formularios almacenados
 
 Elimina los datos del formulario dado el id
 
-### Ejemplo de lógica en el front (AJAX):
+## Ejemplo de lógica en el front (AJAX):
 
 - jQuery:
 
