@@ -77,6 +77,10 @@ class FormController extends Controller
     }
 
     // Nueva implementacion:
+    public function showDownloadView()
+    {
+        return view('download');
+    }
 
     public function downloadForms()
     {
