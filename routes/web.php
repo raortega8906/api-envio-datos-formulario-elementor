@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 
 Route::get('/', function () {
-    return redirect()->route('forms.index');
+    return redirect()->route('forms.download.view');
 });
 
 // Nueva implementacion:
