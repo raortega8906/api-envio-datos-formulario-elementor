@@ -82,23 +82,73 @@ class FormController extends Controller
         return view('forms.download');
     }
 
+    // public function downloadForms()
+    // {
+    //     $forms = Form::all();
+
+    //     $filename = "forms_export.csv";
+    //     $handle = fopen('php://output', 'w');
+
+    //     // Encabezados del CSV
+    //     fputcsv($handle, ['ID', 'Nombre del Formulario', 'Datos', 'Fecha de Creación']);
+
+    //     foreach ($forms as $form) {
+    //         fputcsv($handle, [
+    //             $form->id,
+    //             $form->form_name,
+    //             json_encode($form->data),
+    //             $form->created_at,
+    //         ]);
+    //     }
+
+    //     fclose($handle);
+
+    //     return response()->streamDownload(function () use ($filename) {
+    //         readfile('php://output');
+    //     }, $filename, [
+    //         'Content-Type' => 'text/csv',
+    //         'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+    //     ]);
+    // }
+
     public function downloadForms()
     {
         $forms = Form::all();
 
+        // Obtener todas las claves únicas de los datos de los formularios
+        $allKeys = [];
+        foreach ($forms as $form) {
+            $keys = array_keys($form->data);
+            $allKeys = array_merge($allKeys, $keys);
+        }
+        $allKeys = array_unique($allKeys); // Eliminar duplicados
+
+        // Definir el archivo de salida
         $filename = "forms_export.csv";
+
+        // Abrir un stream de salida
         $handle = fopen('php://output', 'w');
 
-        // Encabezados del CSV
-        fputcsv($handle, ['ID', 'Nombre del Formulario', 'Datos', 'Fecha de Creación']);
+        // Crear los encabezados dinámicamente
+        $header = array_merge(['ID', 'Nombre del Formulario'], $allKeys, ['Fecha de Creación']);
+        fputcsv($handle, $header);
 
+        // Rellenar los datos
         foreach ($forms as $form) {
-            fputcsv($handle, [
+            $row = [
                 $form->id,
                 $form->form_name,
-                json_encode($form->data),
-                $form->created_at,
-            ]);
+            ];
+
+            // Agregar valores de cada campo dinámicamente
+            foreach ($allKeys as $key) {
+                $row[] = $form->data[$key] ?? ''; // Si la clave no existe en el formulario, dejar vacío
+            }
+
+            // Agregar la fecha de creación
+            $row[] = $form->created_at;
+
+            fputcsv($handle, $row);
         }
 
         fclose($handle);
