@@ -77,39 +77,6 @@ class FormController extends Controller
     }
 
     // Nueva implementacion:
-    public function showDownloadView()
-    {
-        return view('forms.download');
-    }
-
-    // public function downloadForms()
-    // {
-    //     $forms = Form::all();
-
-    //     $filename = "forms_export.csv";
-    //     $handle = fopen('php://output', 'w');
-
-    //     // Encabezados del CSV
-    //     fputcsv($handle, ['ID', 'Nombre del Formulario', 'Datos', 'Fecha de Creación']);
-
-    //     foreach ($forms as $form) {
-    //         fputcsv($handle, [
-    //             $form->id,
-    //             $form->form_name,
-    //             json_encode($form->data),
-    //             $form->created_at,
-    //         ]);
-    //     }
-
-    //     fclose($handle);
-
-    //     return response()->streamDownload(function () use ($filename) {
-    //         readfile('php://output');
-    //     }, $filename, [
-    //         'Content-Type' => 'text/csv',
-    //         'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-    //     ]);
-    // }
 
     public function downloadForms()
     {
