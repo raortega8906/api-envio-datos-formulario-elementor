@@ -86,37 +86,30 @@ class FormController extends Controller
     {
         $forms = Form::all();
 
-        // Obtener todas las claves únicas de los datos de los formularios
         $allKeys = [];
         foreach ($forms as $form) {
             $keys = array_keys($form->data);
             $allKeys = array_merge($allKeys, $keys);
         }
-        $allKeys = array_unique($allKeys); // Eliminar duplicados
+        $allKeys = array_unique($allKeys); 
 
-        // Definir el archivo de salida
         $filename = "forms_export.csv";
 
-        // Abrir un stream de salida
         $handle = fopen('php://output', 'w');
 
-        // Crear los encabezados dinámicamente
         $header = array_merge(['ID', 'Nombre del Formulario'], $allKeys, ['Fecha de Creación']);
         fputcsv($handle, $header);
 
-        // Rellenar los datos
         foreach ($forms as $form) {
             $row = [
                 $form->id,
                 $form->form_name,
             ];
 
-            // Agregar valores de cada campo dinámicamente
             foreach ($allKeys as $key) {
-                $row[] = $form->data[$key] ?? ''; // Si la clave no existe en el formulario, dejar vacío
+                $row[] = $form->data[$key] ?? '';
             }
 
-            // Agregar la fecha de creación
             $row[] = $form->created_at;
 
             fputcsv($handle, $row);
