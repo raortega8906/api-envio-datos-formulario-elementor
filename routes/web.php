@@ -9,8 +9,6 @@ Route::get('/', function () {
     return redirect()->route('forms.download.view');
 });
 
-// Nueva implementacion:
-
 // Descarga
 Route::get('/forms/download-view', [FormController::class, 'showDownloadView'])->name('forms.download.view');
 Route::get('/forms/download', [FormController::class, 'downloadForms'])->name('forms.download');
